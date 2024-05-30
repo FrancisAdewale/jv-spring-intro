@@ -2,10 +2,10 @@ package com.northcoders.demospringbootapp.controller;
 
 import com.northcoders.demospringbootapp.dao.CityDao;
 import com.northcoders.demospringbootapp.model.Person;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.northcoders.demospringbootapp.model.Result;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -32,10 +32,12 @@ public class DemoController {
 
     }
 
-//    @GetMapping
-//    public String getCityCoordinates() {
-//        var data = CityDao.cityDAO("");
-//    }
+    @RequestMapping("/city/{name}")
+    public String getCityCoordinates(@PathVariable("name") String name) {
+        var data = CityDao.cityDAO(name);
+        return data.results.get(0).latitude + " " + data.results.get(0).longitude;
+
+    }
 
 
 }
